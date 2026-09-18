@@ -17,6 +17,7 @@ namespace Breakout
                 window.Closed += (o, e) => window.Close();
 
                 Clock clock = new Clock();
+                Clock notdeltacock = new Clock();
                 Ball ball = new Ball();
                 Paddle paddle = new Paddle();
                 Tiles tiles = new Tiles();
@@ -27,7 +28,7 @@ namespace Breakout
                     float deltaTime = clock.Restart().AsSeconds();
                     window.DispatchEvents();
                     ball.Update(deltaTime, paddle);
-                    paddle.Update(ball, powerupp, deltaTime);
+                    paddle.Update(ball, powerupp, deltaTime, notdeltacock);
                     tiles.Update(ball, deltaTime, powerupp);
                     powerupp.Update(deltaTime, tiles, paddle, powerupp);
 

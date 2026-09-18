@@ -76,9 +76,10 @@ public class Tiles
                 ball.sprite.Position += hit;
                 ball.Reflect(hit.Normalized());
                
-                if (new Random().Next(1,11) <= 2)
+                if (new Random().Next(1,11) <= 7)
                 {
                     new Powerupp();
+                   
                     powerupp.sprite.Position = positions[i];
                 }
                 positions.RemoveAt(i);

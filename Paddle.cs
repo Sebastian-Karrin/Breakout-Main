@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Runtime.InteropServices;
 using breakout;
 using SFML.System;
 using SFML.Graphics;
@@ -10,8 +11,10 @@ public class Paddle
     public const float Diameter = 20.0f;
     public const float Radius = Diameter * 0.5f;
     public Sprite sprite;
-    public Vector2f size;                                        //Perharps problem
-
+    public Vector2f size; //Perharps problem
+    public bool haspowerupp = false;
+    public float powerupptimestamp = 0;
+    
     public Paddle()
     {
         sprite = new Sprite();
@@ -26,7 +29,7 @@ public class Paddle
         );
     }
 
-    public void Update(Ball ball, Powerupp powerupp, float deltaTime)
+    public void Update(Ball ball, Powerupp powerupp, float deltaTime, Clock clock)
     {
         var newPos = sprite.Position;
         if (Keyboard.IsKeyPressed(Keyboard.Key.Right))
@@ -60,27 +63,27 @@ public class Paddle
         if (Collision.CircleRectangle(
                 powerupp.sprite.Position, Powerupp.Radius, this.sprite.Position, size, out Vector2f phit))
         {
-            Clock powerclock = new Clock();
-            float time = powerclock.ElapsedTime.AsSeconds();
+            haspowerupp = true;
+            powerupptimestamp = clock.ElapsedTime.AsSeconds();
             powerupp.sprite.Position += (phit + new Vector2f(0, 100.0f));
             sprite.Scale += new Vector2f(0.1f, 0);
             size = new Vector2f(
                 sprite.GetGlobalBounds().Width,
                 sprite.GetGlobalBounds().Height
             );
-            
-            switch (time)
-            {
-                case >= 4.0f:
-                    sprite.Scale -= new Vector2f(0.5f, 0);
-                    size = new Vector2f(
-                        sprite.GetGlobalBounds().Width,
-                        sprite.GetGlobalBounds().Height
-                    );
-                    
-                    break;
-            }
         }
+        if (clock.ElapsedTime.AsSeconds() > powerupptimestamp + 4.0f && haspowerupp)
+        {
+            sprite.Scale -= new Vector2f(0.1f, 0);
+            size = new Vector2f(
+                sprite.GetGlobalBounds().Width,
+                sprite.GetGlobalBounds().Height
+            );
+            haspowerupp = false;
+           clock.Restart();
+        }
+
+       
 
         sprite.Position = newPos;
     }
