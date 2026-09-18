@@ -68,6 +68,7 @@ public class Tiles
 
     public void Update(Ball ball, float deltaTime, Powerupp powerupp)
     {
+       
         for (int i = 0; i < positions.Count; i++)
         {
             var pos = positions[i];
@@ -76,10 +77,8 @@ public class Tiles
                 ball.sprite.Position += hit;
                 ball.Reflect(hit.Normalized());
                
-                if (new Random().Next(1,11) <= 7)
-                {
-                    new Powerupp();
-                   
+                if (new Random().Next(1,11) <= 1)
+                { 
                     powerupp.sprite.Position = positions[i];
                 }
                 positions.RemoveAt(i);

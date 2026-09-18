@@ -1,8 +1,10 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Collections.Generic;
 using SFML.Graphics;
 using SFML.Window;
 using SFML.System;
 namespace Breakout;
+
 
 public class Powerupp
 {
@@ -21,6 +23,7 @@ public class Powerupp
         sprite.Scale = new Vector2f(Diameter/ ballTextureSize.X, Diameter/ballTextureSize.Y);
         sprite.Color = Color.Blue;
         
+        
     }
     public void Reflect(Vector2f normal)
     {
@@ -38,6 +41,6 @@ public class Powerupp
 
     public void Draw(RenderTarget target, Powerupp powerupp)
     {
-            target.Draw(sprite);
+        target.Draw(sprite);
     }
 }

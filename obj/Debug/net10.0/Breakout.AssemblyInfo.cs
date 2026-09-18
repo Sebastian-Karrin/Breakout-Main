@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Breakout")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1da19213528f5376649a03e58a77e9f820bed02a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5f32147d32a7c0acb8e342b8fc67a99f4182150d")]
 [assembly: System.Reflection.AssemblyProductAttribute("Breakout")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Breakout")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
